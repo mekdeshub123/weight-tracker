@@ -19,9 +19,9 @@
         
          <RecordRow
             v-for="record in records" v-bind:key="record.date"
-            v-bind:date="date"
-            v-bind:weight="weight"
-            v-bind:weightLoss="weightLoss"
+            v-bind:date="record.date"     
+            v-bind:weight="record.weight"
+            v-bind:weightLoss="record.weightLoss"
             v-bind:edit="editTable"
             v-on:delete-record="recordDeleted">
          </RecordRow>

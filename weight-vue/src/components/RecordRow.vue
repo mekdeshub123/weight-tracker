@@ -1,8 +1,8 @@
 <template>
     <tr>
-        <td>{{record.date}}</td>
-        <td>{{record.weight}}</td>
-        <td> {{ record.weightLoss }}</td>
+        <td>{{date}}</td>
+        <td>{{weight}}</td>
+        <td> {{weightLoss }}</td>
         <td v-show="edit"></td>
     </tr>
     
