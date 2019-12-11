@@ -27,7 +27,10 @@ export default {
   name: 'app',
   data(){
     return{
-      records: []    // store a copy of the records - your app will request them from your server 
+      // records: []    // store a copy of the records - your app will request the records from your server 
+      // For testing your Vue app, you can add some example data to make sure you can see in it your table
+      // Once your API is working, remove the example data and replace with an empty array. records: [] 
+      records: [ { date: new Date(), weight: 150 } , { date: new Date(), weight: 140}]   // example data for testing. 
     }
   },
   components: {
