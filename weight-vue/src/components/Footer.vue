@@ -3,11 +3,13 @@
 
 <div class="m-2">
     <span class="p-3">
-        <router-link to="/">home</router-link>
+        <!-- <router-link to="/">home</router-link> -->
     </span>
 
     <span class="p-3">
-        <router-link to="/about">About this site</router-link>
+        <!-- To make this router-link work, you'll need to set up the Vue router. 
+        Get adding data, and displaying data in the table working first.  -->
+        <!-- <router-link to="/about">About this site</router-link> -->
     </span>
     <!--<p>xxxxxxxxxxx</p>-->
 </div>

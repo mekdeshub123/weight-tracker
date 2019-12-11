@@ -4,7 +4,9 @@
               <li v-for="error in errors" :key=error>{{ error}}</li>
       </div>
   <div class="card add-weight m-2 p-2">
-      <form id="form-weight"> 
+      <div id="form-weight">   <!-- forms will try and send messages to your server, 
+      and we don't want to do that - we need more control over how the Vue app talks 
+      to your server so you'll write JavaScript to send messages to your server. -->
        <h4 class="card-title"><b>Add current weight</b></h4>      
             <div class="form-group side">
                 <label for="date"><b>Enter date</b></label>
@@ -18,11 +20,11 @@
        <!-- <button class="btn btn-primary" v-on:click.prevent="addWeight">Add </button> -->
        <button class="btn btn-primary" v-on:click="addWeight">Add </button>
         </diV>
-      </form>
+      </div>
 
   </div>
   <div>
-      <weightTable></weightTable>
+      <weightTable v-bind:records="records"></weightTable>
     </div>
 </div> 
 </template>
@@ -41,6 +43,9 @@ export default {
       errors:[]
     }
     
+  },
+  props: {
+    records: Array    // the parent component, App.vue, will provide this data. 
   },
   methods: {
     

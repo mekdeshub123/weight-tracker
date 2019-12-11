@@ -2,10 +2,15 @@
   <div id="app">
     
     <Header></Header>
-    <WeightTracker v-on:weight-added="newWeightAdd"></WeightTracker>
+
+<!-- Since WeightTable is part of WeightTracker, then v-bind records to the records prop in WeightTracker
+WeightTracker will need to v-bind records to the Records prop in WeightTable 
+ -->
+
+    <WeightTracker v-bind:records="records" v-on:weight-added="newWeightAdd"></WeightTracker>
    <!-- <WeightTable v-bind:records="records"></WeightTable>-->
    <!-- <WeightMessage v-bind:message="message" v-bind:weight="weight"></WeightMessage>-->
-   <RecordRow></RecordRow>
+   
     <Footer></Footer>
   </div>
 </template>
@@ -22,7 +27,7 @@ export default {
   name: 'app',
   data(){
     return{
-
+      records: []    // store a copy of the records - your app will request them from your server 
     }
   },
   components: {
@@ -33,8 +38,22 @@ export default {
     Footer
   },
   methods: {
+    getAllWeights() {
+
+        // request all the weights from your server
+        // store them in the weights array (this.weights)
+
+    },
     newWeightAdd(record) {
-      this.records.push(record)
+      
+      //this.records.push(record)
+
+      /*  Adding a record to an array stored in the app will save it in the brower, but not in your database on the server.
+      Instead, in this part of the code, you can send a message to your server, asking it to save the new record. 
+      It will look like this part of the student example, 
+      https://github.com/claraj/student-sign-in-vue-express-api/blob/a6ca7d7390e3c52bc23ef095901aae383c233dd0/student-client/src/App.vue#L41
+       */
+
     }
   }
 }
