@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <div class="table-space">
-        <h3>Records</h3>
-
+  <div>  
         <div class="edit-table-toggle form-check">
             <input id="edit-table" type="checkbox" class="form-check-input" v-model="editTable">
             <label for="edit-table" class="form-check-lable">Edit Record?</label>
 
+    <div class="table-space">
+        <h3> Weight Records</h3>
         </div>
         <div id="record-table">
         <table class="table table-hover">

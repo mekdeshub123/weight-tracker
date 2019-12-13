@@ -5,8 +5,7 @@
     <WeightTracker v-on:weight-added="newWeightAdd"></WeightTracker>
    <!-- <WeightTable v-bind:records="records"></WeightTable>-->
    <!-- <WeightMessage v-bind:message="message" v-bind:weight="weight"></WeightMessage>-->
-   <RecordRow></RecordRow>
-    <Footer></Footer>
+    <!--<Footer></Footer>-->
   </div>
 </template>
 
@@ -16,7 +15,7 @@ import WeightTracker from './components/WeightTracker.vue'
 //import WeightMessage from './components/WeightMessage'
 //import RecordRow from './components/RecordRow'
 import Header from './components/Header'
-import Footer from './components/Footer'
+//import Footer from './components/Footer'
 
 export default {
   name: 'app',
@@ -30,7 +29,7 @@ export default {
     //WeightTable,
     //WeightMessage,
     Header,
-    Footer
+    //Footer
   },
   methods: {
     newWeightAdd(record) {
