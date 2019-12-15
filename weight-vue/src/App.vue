@@ -2,38 +2,55 @@
   <div id="app">
     
     <Header></Header>
-    <WeightTracker v-on:weight-added="newWeightAdd"></WeightTracker>
-   <!-- <WeightTable v-bind:records="records"></WeightTable>-->
-   <!-- <WeightMessage v-bind:message="message" v-bind:weight="weight"></WeightMessage>-->
-    <!--<Footer></Footer>-->
+    <WeightTracker v-on:record-added="newRecordAdded"></WeightTracker>
+
+   <WeightTable v-bind:records="records"
+                v-on:delete-record="recordDeleted">
+   </WeightTable>
+   <WeightMessage v-bind:message="message" v-bind:date="date"></WeightMessage>
+    <Footer></Footer>
   </div>
 </template>
 
 <script>
 import WeightTracker from './components/WeightTracker.vue'
-//import WeightTable from './components/WeightTable.vue'
-//import WeightMessage from './components/WeightMessage'
+import WeightTable from './components/WeightTable.vue'
+import WeightMessage from './components/WeightMessage'
 //import RecordRow from './components/RecordRow'
 import Header from './components/Header'
-//import Footer from './components/Footer'
+import Footer from './components/Footer'
 
 export default {
   name: 'app',
   data(){
     return{
+      records: [],
+      message: '',
+      weight: '',
+      date: ''
 
     }
   },
   components: {
     WeightTracker,
-    //WeightTable,
-    //WeightMessage,
+    //RecordRow,
+    WeightTable,
+    WeightMessage,
     Header,
-    //Footer
+    Footer
   },
   methods: {
-    newWeightAdd(record) {
+    newRecordAdded(record) {
       this.records.push(record)
+    },
+    recordLostOrGain(record) {
+      this.message = record.lost ? 'Congratulation,' : 'Sorry, '
+      this.date = record.date
+    },
+    recordDeleted(record) {
+      this.records = this.records.filter( function(s){
+        return s != record
+      })
     }
   }
 }

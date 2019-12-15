@@ -3,7 +3,7 @@
 
 <div class="m-2">
     <span class="p-3">
-        <router-link to="/">home</router-link>
+        <router-link to="/home">home</router-link>
     </span>
 
     <span class="p-3">

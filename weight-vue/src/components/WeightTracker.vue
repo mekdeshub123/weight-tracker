@@ -1,7 +1,7 @@
 <template>
 <div>
   <div class="alert alert-danger" v-show="errors && errors.length > 0">
-              <li v-for="error in errors" :key=error>{{ error}}</li>
+              <li v-for="(error, ind) in errors" :key="ind">{{ error}}</li>
       </div>
   <div class="card add-weight m-2 p-2">
       <form id="form-weight"> 
@@ -16,24 +16,17 @@
             </div>
         <diV class="side">
        <!-- <button class="btn btn-primary" v-on:click.prevent="addWeight">Add </button> -->
-       <button class="btn btn-primary" v-on:click="addWeight">Add </button>
+       <button class="btn btn-primary" v-on:click="addRecord">Add </button>
         </diV>
       </form>
 
   </div>
-  <div>
-      <weightTable></weightTable>
-    </div>
 </div> 
 </template>
 
 <script>
-import WeightTable from '@/components/WeightTable.vue'
 export default {
   name: 'WeightTracker',
-  components:{
-      WeightTable,
-  },
   data() {
     return {
      newDate: '',
@@ -44,22 +37,17 @@ export default {
   },
   methods: {
     
-      addWeight() {
+      addRecord() {
         this.errors = []
         if(this.newDate && this. newWeight) {
           let record = {date: this.newDate, weight: this.newWeight }
-          this.$emit('weight-added', record)
+          this.$emit('record-added', record)
           this.newDate = ''
           this.newWeight = ''
         } else {
           this.errors.push('Date and Weight is required')
         }
       }   
-      /*addWeight(){
-         this.date= this.$refs.date.value
-         this.weight = this.$refs.weight.value
-         
-      }*/
   }
   
 }
