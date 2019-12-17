@@ -1,8 +1,8 @@
 <template>
-    <tr>
+    <tr class="record-row" v-bind:class="'wLoss-' +record.wLoss">
         <td>{{ record. date}}</td>
         <td>{{ record.weight }}</td>
-        <td>{{ record.lost}}</td>
+        <td>{{ record.wLoss}}</td>
         <td v-show="edit">
             <img class="delete-icon" v-on:click="deleteRecord(record)" src="@/assets/delete.png">
         </td>
@@ -13,20 +13,24 @@
 <script>
 export default {
     name: 'RecordRow',
+    data(){
+        return{
+            edit:true,
+        }
+    },
     props: {
-        record: Object,
-        date: Date,
-        weight: Number,
-        weightLoss:Number,
-        edit: Boolean
+        record: Object,    
     },
     methods: {
-        deleteRecord(record) {
+        checked(record) {
+            this.$emit('record-wLoss', record)
+        },
+         deleteRecord(record) {
             if(confirm(`Delete ${record.date}?`)) {
                 this.$emit('delete-record', record)
             }
         }
-    }   
+    }    
     
 }
 </script>

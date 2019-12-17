@@ -4,7 +4,7 @@
               <li v-for="(error, ind) in errors" :key="ind">{{ error}}</li>
       </div>
   <div class="card add-weight m-2 p-2">
-      <form id="form-weight"> 
+      <form id="form-weight" @submit.prevent="addRecord"> 
        <h4 class="card-title"><b>Add current weight</b></h4>      
             <div class="form-group side">
                 <label for="date"><b>Enter date</b></label>
@@ -16,7 +16,7 @@
             </div>
         <diV class="side">
        <!-- <button class="btn btn-primary" v-on:click.prevent="addWeight">Add </button> -->
-       <button class="btn btn-primary" v-on:click="addRecord">Add </button>
+       <button class="btn btn-primary" v-on:click.prevent="addRecord">Add </button>
         </diV>
       </form>
 
@@ -31,6 +31,7 @@ export default {
     return {
      newDate: '',
      newWeight: '',
+     wLoss: '',
       errors:[]
     }
     
@@ -40,10 +41,12 @@ export default {
       addRecord() {
         this.errors = []
         if(this.newDate && this. newWeight) {
-          let record = {date: this.newDate, weight: this.newWeight }
+          let record = {date: this.newDate, weight: this.newWeight, wLoss: this.wLoss }
           this.$emit('record-added', record)
           this.newDate = ''
           this.newWeight = ''
+          this.wLoss = ''
+          this.$record_api.addRecord(record)
         } else {
           this.errors.push('Date and Weight is required')
         }

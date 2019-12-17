@@ -1,7 +1,7 @@
 <template>
-  <div id="table-container">
-        <div class="table-space">
-            <h3> Weight Records</h3>
+  <div>
+        <div class="card record-list m-2 p-2">
+            <h3 class="card-title"> Weight Records</h3>
         </div>
 
         <div class="edit-table-toggle form-check">
@@ -13,22 +13,23 @@
          <tr>
             <th>Date</th>
             <th>Weight</th>
-            <th>Lost</th>
+            <th>wLoss</th>
             <th v-show="editTable">Delete</th><!--v-show to edit table-->
          </tr>
             <!--v-bind: is used in a loop to associate every generated HTML element with a unique value. 
             it Helps vue re-draw when when data changes-->
-         <tr class="record-row" v-for="record in records" v-bind:key="record.date" v-bind:class="'lost-'+record.lost">
+         <tr class="record-row" v-for="record in records" v-bind:key="record.date" v-bind:class="'wLoss-'+record.wLoss">
              <td>{{ record.date}}</td>
              <td>{{ record.weight}}</td>
-             <td><input type="checkbox" v-model="record.lost" v-on:change="checked(record)"></td>
+             <!--<td>{{ record.wLoss}}</td>-->
+             <td><input type="checkbox" v-model="record.wLoss" v-on:change="checked(record)"></td>
          </tr>
         
          <RecordRow
             v-for="record in records" v-bind:key="record.date"
             v-bind:record="record"
             v-bind:edit="editTable"
-            v-on:record-lost="recordLostOrGain"
+            v-on:record-wLost="recordLostOrGain"
             v-on:delete-record="recordDeleted"> 
          </RecordRow>
          
@@ -61,7 +62,7 @@ export default {
             this.$emit('delete-record', record)
         },
         checked(record) {
-            this.$emit('record-lost', record)
+            this.$emit('record-wLost', record)
         }
     }
     
@@ -73,9 +74,12 @@ export default {
 .table{
     background-color: rgb(191, 250, 250);
 }
-.table-space{
-    padding-left: 20px;
+#record-table{
+    overflow:auto;
 }
+/*.table-space{
+    padding-left: 20px;
+}*/
 
 /*.data {
     background-color: rgb(216, 252, 252),

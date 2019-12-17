@@ -39,17 +39,28 @@ export default {
     Header,
     Footer
   },
+  mounted() {
+    this.updateRecord()
+  },
   methods: {
     newRecordAdded(record) {
       this.records.push(record)
     },
     recordLostOrGain(record) {
-      this.message = record.lost ? 'Congratulation,' : 'Sorry, '
-      this.date = record.date
+        this.$record_api.updateRecord(record).then( () => {
+        this.message = record.lost ? 'Congratulation,' : 'Sorry, '
+        this.date = record.date
+        this.updateRecord()
+      })
     },
     recordDeleted(record) {
       this.records = this.records.filter( function(s){
         return s != record
+      })
+    },
+    updateRecord() {
+      this.$record_api.getAllRecords().then( records => {
+        this.records = records
       })
     }
   }
