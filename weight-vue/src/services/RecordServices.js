@@ -1,3 +1,4 @@
+//axios will make requests from the vue client to express API server
 import axios from 'axios'
 
 const base_url = '/api/record'

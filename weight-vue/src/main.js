@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import  BootstrapVue from 'bootstrap-vue'
 
-
+//import RecordServices and add to vue class prototype
 import RecordAPIServices from '@/services/RecordServices'
 
 Vue.use(BootstrapVue)
